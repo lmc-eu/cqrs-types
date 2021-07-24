@@ -17,6 +17,11 @@ class OnErrorCallback implements OnErrorInterface
         });
     }
 
+    public static function ignoreError(): self
+    {
+        return new self(function (\Throwable $error): void {});
+    }
+
     /**
      * @phpstan-param callable(\Throwable): void $callback
      */
