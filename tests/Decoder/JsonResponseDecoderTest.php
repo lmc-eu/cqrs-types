@@ -17,7 +17,7 @@ class JsonResponseDecoderTest extends TestCase
     {
         $decoder = new JsonResponseDecoder();
 
-        $this->assertSame($supports, $decoder->supports($input));
+        $this->assertSame($supports, $decoder->supports($input, null));
         $this->assertSame($expected, $decoder->decode($input));
     }
 

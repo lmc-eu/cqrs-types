@@ -9,15 +9,29 @@ class CallbackResponseDecoderTest extends TestCase
     /**
      * @test
      */
-    public function shouldSupportsByGivenCallback(): void
+    public function shouldSupportsResponseByGivenCallback(): void
     {
         $decoder = new CallbackResponseDecoder(
-            'is_string',
+            fn (string $response, $initiator) => $response === 'response',
             fn (string $response) => sprintf('decoded:%s', $response),
         );
 
-        $this->assertTrue($decoder->supports('response'));
-        $this->assertFalse($decoder->supports(42));
+        $this->assertTrue($decoder->supports('response', null));
+        $this->assertFalse($decoder->supports(42, null));
+    }
+
+    /**
+     * @test
+     */
+    public function shouldSupportsInitiatorByGivenCallback(): void
+    {
+        $decoder = new CallbackResponseDecoder(
+            fn (string $response, ?string $initiator) => $initiator === 'initiator',
+            fn (string $response) => sprintf('decoded:%s', $response),
+        );
+
+        $this->assertTrue($decoder->supports('response', 'initiator'));
+        $this->assertFalse($decoder->supports('response', null));
     }
 
     /**
@@ -26,7 +40,7 @@ class CallbackResponseDecoderTest extends TestCase
     public function shouldDecodeByGivenCallback(): void
     {
         $decoder = new CallbackResponseDecoder(
-            'is_string',
+            fn (string $response, $initiator) => is_string($response),
             fn (string $response) => sprintf('decoded:%s', $response),
         );
 
