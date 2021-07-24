@@ -13,7 +13,7 @@ LMC CQRS Types
 - [Installation](#installation)
 - [Interfaces (types)](#interfaces-types)
     - Queries
-        - [Quer.githuby](#query-interface)
+        - [Query Interface](#query-interface)
         - [Query Fetcher](#query-fetcher-interface)
         - [Query Handler](#query-handler-interface)
     - Commands
