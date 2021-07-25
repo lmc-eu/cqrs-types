@@ -12,8 +12,9 @@ interface ResponseDecoderInterface
 {
     /**
      * @param mixed $response
+     * @param mixed $initiator
      */
-    public function supports($response): bool;
+    public function supports($response, $initiator): bool;
 
     /**
      * Note: If your decode method returns a DecodedValue - it won't be further decoded by any other decoder.
