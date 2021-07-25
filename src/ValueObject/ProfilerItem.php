@@ -49,8 +49,8 @@ class ProfilerItem
         $this->itemType = $this->matchItemType($itemType);
 
         $this->type = $type;
-        $this->response = $response;
-        $this->error = $error;
+        $this->setResponse($response);
+        $this->setError($error);
         $this->cacheKey = $cacheKey;
         $this->isLoadedFromCache = $isLoadedFromCache;
         $this->isStoredInCache = $isStoredInCache;
@@ -112,7 +112,18 @@ class ProfilerItem
     /** @param mixed|FormattedValue<mixed, mixed> $response */
     public function setResponse($response): void
     {
-        $this->response = $response;
+        $this->response = $this->copy($response);
+    }
+
+    /**
+     * @param mixed $value
+     * @return mixed
+     */
+    private function copy($value)
+    {
+        return is_object($value)
+            ? clone $value
+            : $value;
     }
 
     /** @return \Throwable|FormattedValue<mixed, mixed>|null */
