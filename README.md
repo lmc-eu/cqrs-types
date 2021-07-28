@@ -209,7 +209,7 @@ If you need a quick way of decoding a response, you can use this Callback Respon
 
 ```php
 $decoder = new CallbackResponseDecoder(
-    'is_string',
+    fn (string $response, $initiator) => is_string($response),
     fn (string $response) => sprintf('decoded:%s', $response),
 );
 ```
