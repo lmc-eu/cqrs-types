@@ -10,7 +10,7 @@ namespace Lmc\Cqrs\Types\Decoder;
 class CallbackResponseDecoder implements ResponseDecoderInterface
 {
     /**
-     * @phpstan-var callable(mixed): bool
+     * @phpstan-var callable(mixed, mixed): bool
      * @var callable
      */
     private $supports;
@@ -21,7 +21,7 @@ class CallbackResponseDecoder implements ResponseDecoderInterface
     private $decode;
 
     /**
-     * @phpstan-param callable(mixed): bool $supports
+     * @phpstan-param callable(mixed, mixed): bool $supports
      * @phpstan-param callable(Response): DecodedResponse $decode
      */
     public function __construct(callable $supports, callable $decode)
@@ -30,12 +30,9 @@ class CallbackResponseDecoder implements ResponseDecoderInterface
         $this->decode = $decode;
     }
 
-    /**
-     * @param mixed $response
-     */
-    public function supports($response): bool
+    public function supports($response, $initiator): bool
     {
-        return call_user_func($this->supports, $response);
+        return call_user_func($this->supports, $response, $initiator);
     }
 
     /**

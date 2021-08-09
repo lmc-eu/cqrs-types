@@ -7,7 +7,7 @@ namespace Lmc\Cqrs\Types\Decoder;
  */
 class JsonResponseDecoder implements ResponseDecoderInterface
 {
-    public function supports($response): bool
+    public function supports($response, $initiator): bool
     {
         return is_string($response) && is_array(json_decode($response, true));
     }
