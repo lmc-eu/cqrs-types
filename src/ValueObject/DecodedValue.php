@@ -10,8 +10,9 @@ use Lmc\Cqrs\Types\Decoder\ResponseDecoderInterface;
  *
  * @see ResponseDecoderInterface
  * @phpstan-template Value
+ * @phpstan-implements DecodedValueInterface<Value>
  */
-class DecodedValue
+class DecodedValue implements DecodedValueInterface
 {
     /**
      * @phpstan-var Value
