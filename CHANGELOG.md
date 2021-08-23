@@ -3,6 +3,8 @@
 <!-- There should always be "Unreleased" section at the beginning. -->
 
 ## Unreleased
+
+## 2.1.0 - 2021-08-23
 - Add `DecodedValueInterface` to allow other implementations than just `DecodedValue`
 
 ## 2.0.0 - 2021-08-09
