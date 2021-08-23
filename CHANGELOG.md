@@ -3,6 +3,7 @@
 <!-- There should always be "Unreleased" section at the beginning. -->
 
 ## Unreleased
+- Add `DecodedValueInterface` to allow other implementations than just `DecodedValue`
 
 ## 2.0.0 - 2021-08-09
 - [**BC**] Add `$initiator` argument to `ResponseDecoderInterface::supports` method
