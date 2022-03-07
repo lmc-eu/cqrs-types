@@ -9,8 +9,7 @@ use Lmc\Cqrs\Types\ValueObject\DecodedValueInterface;
  */
 class Utils
 {
-    /** @param mixed $value */
-    public static function getType($value): string
+    public static function getType(mixed $value): string
     {
         if ($value instanceof DecodedValueInterface) {
             return sprintf('DecodedValue<%s>', self::getValueType($value->getValue()));
@@ -19,8 +18,7 @@ class Utils
         return self::getValueType($value);
     }
 
-    /** @param mixed $value */
-    private static function getValueType($value): string
+    private static function getValueType(mixed $value): string
     {
         return is_object($value)
             ? get_class($value)

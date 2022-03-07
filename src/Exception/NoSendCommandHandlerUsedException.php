@@ -8,25 +8,18 @@ use Lmc\Cqrs\Types\ValueObject\PrioritizedItem;
 
 class NoSendCommandHandlerUsedException extends \InvalidArgumentException implements CqrsExceptionInterface
 {
-    /** @phpstan-var CommandInterface<mixed> */
-    private CommandInterface $command;
-    /** @phpstan-var PrioritizedItem<SendCommandHandlerInterface<mixed, mixed>>[] */
-    private array $currentHandlers;
-
     /**
      * @phpstan-param CommandInterface<mixed> $command
      * @phpstan-param PrioritizedItem<SendCommandHandlerInterface<mixed, mixed>>[] $currentHandlers
      */
     public function __construct(
         string $message,
-        CommandInterface $command,
-        array $currentHandlers,
+        private CommandInterface $command,
+        private array $currentHandlers,
         int $code = 0,
-        ?\Throwable $previous = null
+        ?\Throwable $previous = null,
     ) {
         parent::__construct($message, $code, $previous);
-        $this->command = $command;
-        $this->currentHandlers = $currentHandlers;
     }
 
     /**
@@ -37,7 +30,7 @@ class NoSendCommandHandlerUsedException extends \InvalidArgumentException implem
         CommandInterface $command,
         array $currentHandlers,
         int $code = 0,
-        ?\Throwable $previous = null
+        ?\Throwable $previous = null,
     ): self {
         return new self('There is no handler for a given Command.', $command, $currentHandlers, $code, $previous);
     }

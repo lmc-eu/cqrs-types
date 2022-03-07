@@ -15,25 +15,16 @@ use Lmc\Cqrs\Types\Decoder\ResponseDecoderInterface;
 class DecodedValue implements DecodedValueInterface
 {
     /**
-     * @phpstan-var Value
-     * @var mixed
-     */
-    private $value;
-
-    /**
      * @phpstan-param Value $value
-     * @param mixed $value
      */
-    public function __construct($value)
+    public function __construct(private mixed $value)
     {
-        $this->value = $value;
     }
 
     /**
      * @phpstan-return Value
-     * @return mixed
      */
-    public function getValue()
+    public function getValue(): mixed
     {
         return $this->value;
     }

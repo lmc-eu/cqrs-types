@@ -13,10 +13,8 @@ class UtilsTest extends TestCase
     /**
      * @test
      * @dataProvider provideValues
-     *
-     * @param mixed $value
      */
-    public function shouldGetTypeOfGivenValue($value, string $expected): void
+    public function shouldGetTypeOfGivenValue(mixed $value, string $expected): void
     {
         $type = Utils::getType($value);
 

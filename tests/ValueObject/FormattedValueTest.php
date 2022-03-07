@@ -7,14 +7,11 @@ use PHPUnit\Framework\TestCase;
 class FormattedValueTest extends TestCase
 {
     /**
-     * @param mixed $original
-     * @param mixed $formatted
-     *
      * @dataProvider provideValues
      *
      * @test
      */
-    public function shouldCastFormattedValueToString($original, $formatted, string $expected): void
+    public function shouldCastFormattedValueToString(mixed $original, mixed $formatted, string $expected): void
     {
         $formattedValue = new FormattedValue($original, $formatted);
 

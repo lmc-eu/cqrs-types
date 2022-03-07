@@ -2,18 +2,16 @@
 
 namespace Lmc\Cqrs\Types\ValueObject;
 
-class CacheKey
+class CacheKey implements \Stringable
 {
     public const DEFAULT_ALOGRITHM = 'sha256';
     public const DONT_HASH = 'do-not-hash';
 
-    private string $key;
     private string $algorithm;
     private ?string $hashedKeyCache = null;
 
-    public function __construct(string $key, ?string $algorithm = null)
+    public function __construct(private string $key, ?string $algorithm = null)
     {
-        $this->key = $key;
         $this->algorithm = $algorithm ?? self::DEFAULT_ALOGRITHM;
     }
 

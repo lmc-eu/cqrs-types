@@ -30,7 +30,7 @@ class CallbackResponseDecoder implements ResponseDecoderInterface
         $this->decode = $decode;
     }
 
-    public function supports($response, $initiator): bool
+    public function supports(mixed $response, mixed $initiator): bool
     {
         return call_user_func($this->supports, $response, $initiator);
     }
@@ -38,10 +38,8 @@ class CallbackResponseDecoder implements ResponseDecoderInterface
     /**
      * @phpstan-param Response $response
      * @phpstan-return DecodedResponse
-     * @param mixed $response
-     * @return mixed
      */
-    public function decode($response)
+    public function decode(mixed $response): mixed
     {
         return call_user_func($this->decode, $response);
     }

@@ -9,7 +9,6 @@ interface OnSuccessInterface
 {
     /**
      * @phpstan-param Response $response
-     * @param mixed $response
      */
-    public function __invoke($response): void;
+    public function __invoke(mixed $response): void;
 }

@@ -41,7 +41,6 @@ interface CommandSenderInterface
      * @phpstan-param CommandInterface<Request> $command
      * @phpstan-return DecodedResponse
      * @throws \Throwable
-     * @return mixed
      */
-    public function sendAndReturn(CommandInterface $command);
+    public function sendAndReturn(CommandInterface $command): mixed;
 }

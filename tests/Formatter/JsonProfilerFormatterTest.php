@@ -43,14 +43,14 @@ class JsonProfilerFormatterTest extends TestCase
                     null,
                     'test',
                     '',
-                    '{"data": { "id": 42 }}'
+                    '{"data": { "id": 42 }}',
                 ),
                 new ProfilerItem(
                     'id',
                     null,
                     'test',
                     '',
-                    new FormattedValue('{"data": { "id": 42 }}', ['data' => ['id' => 42]])
+                    new FormattedValue('{"data": { "id": 42 }}', ['data' => ['id' => 42]]),
                 ),
             ],
             'with empty json array in formatted response' => [
@@ -59,14 +59,14 @@ class JsonProfilerFormatterTest extends TestCase
                     null,
                     'test',
                     '',
-                    new FormattedValue('StreamInterface', '[]')
+                    new FormattedValue('StreamInterface', '[]'),
                 ),
                 new ProfilerItem(
                     'id',
                     null,
                     'test',
                     '',
-                    new FormattedValue('StreamInterface', [])
+                    new FormattedValue('StreamInterface', []),
                 ),
             ],
             'with empty json object in formatted response' => [
@@ -75,14 +75,14 @@ class JsonProfilerFormatterTest extends TestCase
                     null,
                     'test',
                     '',
-                    new FormattedValue('StreamInterface', '{}')
+                    new FormattedValue('StreamInterface', '{}'),
                 ),
                 new ProfilerItem(
                     'id',
                     null,
                     'test',
                     '',
-                    new FormattedValue('StreamInterface', [])
+                    new FormattedValue('StreamInterface', []),
                 ),
             ],
             'with json in formatted response' => [
@@ -91,14 +91,14 @@ class JsonProfilerFormatterTest extends TestCase
                     null,
                     'test',
                     '',
-                    '{"data": { "id": 42 }}'
+                    '{"data": { "id": 42 }}',
                 ),
                 new ProfilerItem(
                     'id',
                     null,
                     'test',
                     '',
-                    new FormattedValue('{"data": { "id": 42 }}', ['data' => ['id' => 42]])
+                    new FormattedValue('{"data": { "id": 42 }}', ['data' => ['id' => 42]]),
                 ),
             ],
             'with empty json array in additional data' => [
@@ -114,7 +114,7 @@ class JsonProfilerFormatterTest extends TestCase
                 new ProfilerItem(
                     'id',
                     ['body' => new FormattedValue('{"data": { "id": 42 }}', ['data' => ['id' => 42]])],
-                    'test'
+                    'test',
                 ),
             ],
             'with empty json array in formatted additional data' => [
@@ -129,12 +129,12 @@ class JsonProfilerFormatterTest extends TestCase
                 new ProfilerItem(
                     'id',
                     ['body' => new FormattedValue('StreamInterface', '{"data": { "id": 42 }}')],
-                    'test'
+                    'test',
                 ),
                 new ProfilerItem(
                     'id',
                     ['body' => new FormattedValue('StreamInterface', ['data' => ['id' => 42]])],
-                    'test'
+                    'test',
                 ),
             ],
         ];
