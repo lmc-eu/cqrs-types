@@ -1,8 +1,8 @@
 {
     "name": "lmc/cqrs-types",
-    "type": "library",
     "description": "A library containing types (interfaces and value objects) to help with Queries and Commands",
     "license": "MIT",
+    "type": "library",
     "require": {
         "php": "^7.4",
         "ext-hash": "*",
@@ -21,9 +21,6 @@
         "phpstan/phpstan-phpunit": "^0.12.18",
         "phpunit/phpunit": "^9.5"
     },
-    "config": {
-        "sort-packages": true
-    },
     "autoload": {
         "psr-4": {
             "Lmc\\Cqrs\\Types\\": "src/"
@@ -33,6 +30,14 @@
         "psr-4": {
             "Lmc\\Cqrs\\Types\\": "tests/"
         }
+    },
+    "config": {
+        "allow-plugins": {
+            "ergebnis/composer-normalize": true,
+            "phpstan/extension-installer": true,
+            "dealerdirect/phpcodesniffer-composer-installer": true
+        },
+        "sort-packages": true
     },
     "scripts": {
         "all": [
