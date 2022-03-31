@@ -3,6 +3,8 @@
 <!-- There should always be "Unreleased" section at the beginning. -->
 
 ## Unreleased
+
+## 2.2.0 - 2022-03-31
 - Use internal cache for `CacheKey` hashed value
 
 ## 2.1.0 - 2021-08-23
