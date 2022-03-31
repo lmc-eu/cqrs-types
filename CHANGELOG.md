@@ -3,6 +3,7 @@
 <!-- There should always be "Unreleased" section at the beginning. -->
 
 ## Unreleased
+- Use internal cache for `CacheKey` hashed value
 
 ## 2.1.0 - 2021-08-23
 - Add `DecodedValueInterface` to allow other implementations than just `DecodedValue`

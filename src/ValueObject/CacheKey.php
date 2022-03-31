@@ -9,6 +9,7 @@ class CacheKey
 
     private string $key;
     private string $algorithm;
+    private ?string $hashedKeyCache = null;
 
     public function __construct(string $key, ?string $algorithm = null)
     {
@@ -18,9 +19,15 @@ class CacheKey
 
     public function getHashedKey(): string
     {
-        return $this->algorithm === self::DONT_HASH
-            ? $this->key
-            : hash($this->algorithm, $this->key);
+        if ($this->algorithm === self::DONT_HASH) {
+            return $this->key;
+        }
+
+        if ($this->hashedKeyCache === null) {
+            $this->hashedKeyCache = hash($this->algorithm, $this->key);
+        }
+
+        return $this->hashedKeyCache;
     }
 
     public function getKey(): string
