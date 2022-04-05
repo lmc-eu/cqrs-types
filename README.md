@@ -135,7 +135,13 @@ Decoders should (*and are in a default implementation*) be used by a priority on
 If you need a decoder to be *final* and no other decoding to be done, you must return a `DecodedValue` object.
 - QueryFetcher and CommandSender is responsible not to send a `DecodedValue` to any other decoder
 
-It should be pure.
+#### It should be pure. 
+The response should be decoded in the same way everytime, in that case it can be safely cached.
+
+If you need to do some impure operations in your decoder, you should use `ImpureResponseDecoderInterface` instead. 
+It works exactly the same as a pure decoder but in the addition the `QueryFetcher` knows, that a decoding process is not pure, so it may do some extra stuff.
+For example `QueryFetcher` should cache the result **before** the first impure decoding, so it won't cache the wrong result. 
+
 If an unsupported response is passed to decode method, it should return it untouched.
 It must not throw an exception.
 

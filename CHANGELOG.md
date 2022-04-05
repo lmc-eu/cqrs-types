@@ -3,6 +3,8 @@
 <!-- There should always be "Unreleased" section at the beginning. -->
 
 ## Unreleased
+- Add `ImpureResponseDecoderInterface`
+- Show detailed type for `DecodedData` value object
 
 ## 2.2.0 - 2022-03-31
 - Use internal cache for `CacheKey` hashed value
