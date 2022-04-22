@@ -8,47 +8,28 @@ use Lmc\Cqrs\Types\Utils;
  * @phpstan-template Original
  * @phpstan-template Formatted
  */
-class FormattedValue
+class FormattedValue implements \Stringable
 {
-    /**
-     * @phpstan-var Original
-     * @var mixed
-     */
-    private $original;
-    /**
-     * @phpstan-var Formatted
-     * @var mixed
-     */
-    private $formatted;
-    private bool $isWide;
-
     /**
      * @phpstan-param Original $original
      * @phpstan-param Formatted $formatted
-     * @param mixed $original
-     * @param mixed $formatted
      */
-    public function __construct($original, $formatted, bool $isWide = false)
+    public function __construct(private mixed $original, private mixed $formatted, private bool $isWide = false)
     {
-        $this->original = $original;
-        $this->formatted = $formatted;
-        $this->isWide = $isWide;
     }
 
     /**
      * @phpstan-return Original
-     * @return mixed
      */
-    public function getOriginal()
+    public function getOriginal(): mixed
     {
         return $this->original;
     }
 
     /**
      * @phpstan-return Formatted
-     * @return mixed
      */
-    public function getFormatted()
+    public function getFormatted(): mixed
     {
         return $this->formatted;
     }

@@ -14,13 +14,6 @@ class PrioritizedItem
     public const PRIORITY_LOWEST = 1;
 
     /**
-     * @phpstan-var Item
-     * @var mixed
-     */
-    private $item;
-    private int $priority;
-
-    /**
      * @phpstan-param self<mixed> $a
      * @phpstan-param self<mixed> $b
      */
@@ -31,19 +24,15 @@ class PrioritizedItem
 
     /**
      * @phpstan-param Item $item
-     * @param mixed $item
      */
-    public function __construct($item, int $priority)
+    public function __construct(private mixed $item, private int $priority)
     {
-        $this->item = $item;
-        $this->priority = $priority;
     }
 
     /**
      * @phpstan-return Item
-     * @return mixed
      */
-    public function getItem()
+    public function getItem(): mixed
     {
         return $this->item;
     }

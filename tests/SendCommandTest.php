@@ -41,7 +41,7 @@ class SendCommandTest extends TestCase
         $this->dummySendCommandHandler->handle(
             $command,
             new OnSuccessCallback(fn (string $response) => $this->assertSame($data, $response)),
-            new OnErrorCallback(fn (\Throwable $error) => $this->fail($error->getMessage()))
+            new OnErrorCallback(fn (\Throwable $error) => $this->fail($error->getMessage())),
         );
     }
 
@@ -54,7 +54,7 @@ class SendCommandTest extends TestCase
                 return 'not-a-dummy';
             }
 
-            public function createRequest(): void
+            public function createRequest(): mixed
             {
                 throw new \Exception(sprintf('Method %s is not implemented yet.', __METHOD__));
             }
@@ -80,7 +80,7 @@ class SendCommandTest extends TestCase
                     $this->assertSame(DummyCommand::class, $error->getExpectedRequest());
                     $this->assertSame('not-a-dummy', $error->getGivenRequest());
                 }
-            })
+            }),
         );
     }
 }

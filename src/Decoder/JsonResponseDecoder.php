@@ -7,12 +7,12 @@ namespace Lmc\Cqrs\Types\Decoder;
  */
 class JsonResponseDecoder implements ResponseDecoderInterface
 {
-    public function supports($response, $initiator): bool
+    public function supports(mixed $response, mixed $initiator): bool
     {
         return is_string($response) && is_array(json_decode($response, true));
     }
 
-    public function decode($response)
+    public function decode(mixed $response): mixed
     {
         return is_string($response) && is_array($decoded = json_decode($response, true))
             ? $decoded

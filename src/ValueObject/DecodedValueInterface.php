@@ -13,7 +13,6 @@ interface DecodedValueInterface
 {
     /**
      * @phpstan-return Value
-     * @return mixed
      */
-    public function getValue();
+    public function getValue(): mixed;
 }

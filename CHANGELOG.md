@@ -3,6 +3,7 @@
 <!-- There should always be "Unreleased" section at the beginning. -->
 
 ## Unreleased
+- [**BC**] Require php 8.1
 
 ## 2.3.0 - 2022-04-05
 - Add `ImpureResponseDecoderInterface`

@@ -26,8 +26,8 @@ class PrioritizedItemTest extends TestCase
             array_values(
                 array_map(
                     fn (PrioritizedItem $item) => $item->getItem(),
-                    $items
-                )
+                    $items,
+                ),
             );
 
         $this->assertSame(
@@ -39,7 +39,7 @@ class PrioritizedItemTest extends TestCase
                 'd: 2',
                 'f: -1',
             ],
-            $values
+            $values,
         );
     }
 }

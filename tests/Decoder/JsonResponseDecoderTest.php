@@ -7,13 +7,11 @@ use PHPUnit\Framework\TestCase;
 class JsonResponseDecoderTest extends TestCase
 {
     /**
-     * @param string|array|null $expected
-     *
      * @dataProvider provideStringInput
      *
      * @test
      */
-    public function shouldDecodeGivenString(?string $input, bool $supports, $expected): void
+    public function shouldDecodeGivenString(?string $input, bool $supports, string|array|null $expected): void
     {
         $decoder = new JsonResponseDecoder();
 

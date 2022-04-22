@@ -4,26 +4,21 @@ namespace Lmc\Cqrs\Types\Exception;
 
 class UnsupportedRequestException extends \InvalidArgumentException implements CqrsExceptionInterface
 {
-    private string $expectedRequest;
-    private string $givenRequest;
-
     public function __construct(
         string $message,
-        string $expectedRequest,
-        string $givenRequest,
+        private string $expectedRequest,
+        private string $givenRequest,
         int $code = 0,
-        ?\Throwable $previous = null
+        ?\Throwable $previous = null,
     ) {
         parent::__construct($message, $code, $previous);
-        $this->expectedRequest = $expectedRequest;
-        $this->givenRequest = $givenRequest;
     }
 
     public static function create(
         string $expectedRequest,
         string $givenRequest,
         int $code = 0,
-        ?\Throwable $previous = null
+        ?\Throwable $previous = null,
     ): self {
         return new self('Unsupported request given to handle.', $expectedRequest, $givenRequest, $code, $previous);
     }

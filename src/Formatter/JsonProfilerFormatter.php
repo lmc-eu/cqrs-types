@@ -20,8 +20,8 @@ class JsonProfilerFormatter implements ProfilerFormatterInterface
                 $item->setResponse(
                     new FormattedValue(
                         $item->getResponse()->getOriginal(),
-                        $decodedJson->getFormatted()
-                    )
+                        $decodedJson->getFormatted(),
+                    ),
                 );
             }
         }
@@ -37,7 +37,7 @@ class JsonProfilerFormatter implements ProfilerFormatterInterface
                 if ($decodedJson = $this->formatJson($value->getFormatted())) {
                     $item->setAdditionalData(
                         $key,
-                        new FormattedValue($value->getOriginal(), $decodedJson->getFormatted())
+                        new FormattedValue($value->getOriginal(), $decodedJson->getFormatted()),
                     );
                 }
             }

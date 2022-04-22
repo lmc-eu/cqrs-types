@@ -10,11 +10,7 @@ use Lmc\Cqrs\Types\ValueObject\DecodedValue;
  */
 interface ResponseDecoderInterface
 {
-    /**
-     * @param mixed $response
-     * @param mixed $initiator
-     */
-    public function supports($response, $initiator): bool;
+    public function supports(mixed $response, mixed $initiator): bool;
 
     /**
      * Note: If your decode method returns a DecodedValue - it won't be further decoded by any other decoder.
@@ -22,8 +18,6 @@ interface ResponseDecoderInterface
      *
      * @phpstan-param Response $response
      * @phpstan-return DecodedResponse
-     * @param mixed $response
-     * @return mixed
      */
-    public function decode($response);
+    public function decode(mixed $response): mixed;
 }

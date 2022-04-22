@@ -8,68 +8,41 @@ class ProfilerItem
     public const TYPE_COMMAND = 'command';
     public const TYPE_OTHER = 'other';
 
-    private string $profilerId;
     private array $additionalData;
     private string $itemType;
 
-    private ?string $type;
-    /** @var mixed */
-    private $response;
-    /** @var \Throwable|FormattedValue<mixed, mixed>|null */
-    private $error;
-    private ?CacheKey $cacheKey;
-    private ?bool $isLoadedFromCache;
-    private ?bool $isStoredInCache;
-    private ?int $storedInCacheFor;
-    private ?int $duration;
-    private ?string $handledBy;
-    private array $decodedBy;
-
     /**
-     * @param mixed $response
-     * @param \Throwable|FormattedValue<mixed, mixed>|null $error
+     * @phpstan-param \Throwable|FormattedValue<mixed, mixed>|null $error
      */
     public function __construct(
-        string $profilerId,
+        private string $profilerId,
         ?array $additionalData,
         string $itemType,
-        ?string $type = null,
-        $response = null,
-        $error = null,
-        ?CacheKey $cacheKey = null,
-        ?bool $isLoadedFromCache = null,
-        ?bool $isStoredInCache = null,
-        ?int $storedInCacheFor = null,
-        ?int $duration = null,
-        ?string $handledBy = null,
-        array $decodedBy = []
+        private ?string $type = null,
+        private mixed $response = null,
+        private \Throwable|FormattedValue|null $error = null,
+        private ?CacheKey $cacheKey = null,
+        private ?bool $isLoadedFromCache = null,
+        private ?bool $isStoredInCache = null,
+        private ?int $storedInCacheFor = null,
+        private ?int $duration = null,
+        private ?string $handledBy = null,
+        private array $decodedBy = [],
     ) {
-        $this->profilerId = $profilerId;
         $this->additionalData = $additionalData ?? [];
         $this->itemType = $this->matchItemType($itemType);
 
-        $this->type = $type;
         $this->setResponse($response);
         $this->setError($error);
-        $this->cacheKey = $cacheKey;
-        $this->isLoadedFromCache = $isLoadedFromCache;
-        $this->isStoredInCache = $isStoredInCache;
-        $this->storedInCacheFor = $storedInCacheFor;
-        $this->duration = $duration;
-        $this->handledBy = $handledBy;
-        $this->decodedBy = $decodedBy;
     }
 
     private function matchItemType(string $type): string
     {
-        switch (mb_strtolower(trim($type))) {
-            case self::TYPE_QUERY:
-                return self::TYPE_QUERY;
-            case self::TYPE_COMMAND:
-                return self::TYPE_COMMAND;
-            default:
-                return self::TYPE_OTHER;
-        }
+        return match (mb_strtolower(trim($type))) {
+            self::TYPE_QUERY => self::TYPE_QUERY,
+            self::TYPE_COMMAND => self::TYPE_COMMAND,
+            default => self::TYPE_OTHER,
+        };
     }
 
     public function getProfilerId(): string
@@ -77,8 +50,8 @@ class ProfilerItem
         return $this->profilerId;
     }
 
-    /** @param mixed|FormattedValue<mixed, mixed> $additionalData */
-    public function setAdditionalData(string $key, $additionalData): void
+    /** @phpstan-param mixed|FormattedValue<mixed, mixed> $additionalData */
+    public function setAdditionalData(string $key, mixed $additionalData): void
     {
         $this->additionalData[$key] = $additionalData;
     }
@@ -103,37 +76,33 @@ class ProfilerItem
         $this->type = $type;
     }
 
-    /** @return mixed|FormattedValue<mixed, mixed> */
-    public function getResponse()
+    /** @phpstan-return mixed|FormattedValue<mixed, mixed> */
+    public function getResponse(): mixed
     {
         return $this->response;
     }
 
-    /** @param mixed|FormattedValue<mixed, mixed> $response */
-    public function setResponse($response): void
+    /** @phpstan-param mixed|FormattedValue<mixed, mixed> $response */
+    public function setResponse(mixed $response): void
     {
         $this->response = $this->copy($response);
     }
 
-    /**
-     * @param mixed $value
-     * @return mixed
-     */
-    private function copy($value)
+    private function copy(mixed $value): mixed
     {
         return is_object($value)
             ? clone $value
             : $value;
     }
 
-    /** @return \Throwable|FormattedValue<mixed, mixed>|null */
-    public function getError()
+    /** @phpstan-return \Throwable|FormattedValue<mixed, mixed>|null */
+    public function getError(): \Throwable|FormattedValue|null
     {
         return $this->error;
     }
 
-    /** @param \Throwable|FormattedValue<mixed, mixed>|null $error */
-    public function setError($error): void
+    /** @phpstan-param \Throwable|FormattedValue<mixed, mixed>|null $error */
+    public function setError(\Throwable|FormattedValue|null $error): void
     {
         $this->error = $error;
     }

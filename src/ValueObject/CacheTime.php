@@ -4,9 +4,7 @@ namespace Lmc\Cqrs\Types\ValueObject;
 
 class CacheTime
 {
-    private int $seconds;
-
-    private function __construct(int $seconds)
+    private function __construct(private int $seconds)
     {
         $this->seconds = max(0, $seconds);
     }

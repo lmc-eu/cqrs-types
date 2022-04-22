@@ -47,17 +47,15 @@ interface QueryFetcherInterface
      * @phpstan-param QueryInterface<Request> $query
      * @phpstan-return DecodedResponse
      * @throws \Throwable
-     * @return mixed
      */
-    public function fetchAndReturn(QueryInterface $query);
+    public function fetchAndReturn(QueryInterface $query): mixed;
 
     /**
      * @phpstan-param QueryInterface<Request> $query
      * @phpstan-return DecodedResponse
      * @throws \Throwable
-     * @return mixed
      */
-    public function fetchFreshAndReturn(QueryInterface $query);
+    public function fetchFreshAndReturn(QueryInterface $query): mixed;
 
     public function enableCache(): void;
 
