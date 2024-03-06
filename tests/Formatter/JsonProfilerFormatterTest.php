@@ -4,15 +4,14 @@ namespace Lmc\Cqrs\Types\Formatter;
 
 use Lmc\Cqrs\Types\ValueObject\FormattedValue;
 use Lmc\Cqrs\Types\ValueObject\ProfilerItem;
+use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 
 class JsonProfilerFormatterTest extends TestCase
 {
-    /**
-     * @dataProvider provideProfilerItem
-     *
-     * @test
-     */
+    #[Test]
+    #[DataProvider('provideProfilerItem')]
     public function shouldFormatProfilerItem(ProfilerItem $item, ProfilerItem $expected): void
     {
         $formatter = new JsonProfilerFormatter();
@@ -22,7 +21,7 @@ class JsonProfilerFormatterTest extends TestCase
         $this->assertEquals($expected, $formatted);
     }
 
-    public function provideProfilerItem(): array
+    public static function provideProfilerItem(): array
     {
         return [
             'without any json' => [

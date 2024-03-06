@@ -2,13 +2,12 @@
 
 namespace Lmc\Cqrs\Types\ValueObject;
 
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 
 class OnErrorCallbackTest extends TestCase
 {
-    /**
-     * @test
-     */
+    #[Test]
     public function shouldUseGivenCallback(): void
     {
         $actualError = null;
@@ -22,9 +21,7 @@ class OnErrorCallbackTest extends TestCase
         $this->assertSame('Actual error', $actualError);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function shouldThrowGivenError(): void
     {
         $callback = OnErrorCallback::throwOnError();
@@ -34,9 +31,7 @@ class OnErrorCallbackTest extends TestCase
         $callback(new \Exception('Should be thrown.'));
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function shouldIgnoreError(): void
     {
         $callback = OnErrorCallback::ignoreError();

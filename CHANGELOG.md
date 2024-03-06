@@ -3,6 +3,8 @@
 <!-- There should always be "Unreleased" section at the beginning. -->
 
 ## Unreleased
+- Drop support for php 8.1
+- Update dependencies
 
 ## 3.1.0 - 2024-01-30
 - Allow `psr/cache` v2

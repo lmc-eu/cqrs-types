@@ -2,13 +2,12 @@
 
 namespace Lmc\Cqrs\Types\ValueObject;
 
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 
 class PrioritizedItemTest extends TestCase
 {
-    /**
-     * @test
-     */
+    #[Test]
     public function shouldSortPrioritizedItemsByPriority(): void
     {
         $items = [
