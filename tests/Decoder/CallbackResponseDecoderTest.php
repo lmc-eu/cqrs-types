@@ -2,13 +2,12 @@
 
 namespace Lmc\Cqrs\Types\Decoder;
 
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 
 class CallbackResponseDecoderTest extends TestCase
 {
-    /**
-     * @test
-     */
+    #[Test]
     public function shouldSupportsResponseByGivenCallback(): void
     {
         $decoder = new CallbackResponseDecoder(
@@ -20,9 +19,7 @@ class CallbackResponseDecoderTest extends TestCase
         $this->assertFalse($decoder->supports(42, null));
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function shouldSupportsInitiatorByGivenCallback(): void
     {
         $decoder = new CallbackResponseDecoder(
@@ -34,9 +31,7 @@ class CallbackResponseDecoderTest extends TestCase
         $this->assertFalse($decoder->supports('response', null));
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function shouldDecodeByGivenCallback(): void
     {
         $decoder = new CallbackResponseDecoder(

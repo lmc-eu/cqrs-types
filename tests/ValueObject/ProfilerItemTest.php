@@ -2,13 +2,12 @@
 
 namespace Lmc\Cqrs\Types\ValueObject;
 
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 
 class ProfilerItemTest extends TestCase
 {
-    /**
-     * @test
-     */
+    #[Test]
     public function shouldProfileResponseAsItIsInThatMoment(): void
     {
         $response = new \stdClass();
@@ -21,9 +20,7 @@ class ProfilerItemTest extends TestCase
         $this->assertSame('foo', $profilerItem->getResponse()->value);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function shouldProfileResponseAsItIsInThatMomentViaSetter(): void
     {
         $response = new \stdClass();

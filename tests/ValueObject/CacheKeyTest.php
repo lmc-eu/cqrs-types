@@ -2,13 +2,12 @@
 
 namespace Lmc\Cqrs\Types\ValueObject;
 
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 
 class CacheKeyTest extends TestCase
 {
-    /**
-     * @test
-     */
+    #[Test]
     public function shouldHashCacheKeyWithDefaultAlgorithm(): void
     {
         $key = new CacheKey('key');
@@ -19,9 +18,7 @@ class CacheKeyTest extends TestCase
         $this->assertSame(hash('sha256', 'key'), (string) $key);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function shouldNotHashCacheKey(): void
     {
         $key = new CacheKey('key', CacheKey::DONT_HASH);
@@ -32,9 +29,7 @@ class CacheKeyTest extends TestCase
         $this->assertSame('key', (string) $key);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function shouldHashCacheKeyByCustomAlgorithm(): void
     {
         $key = new CacheKey('key', 'md5');

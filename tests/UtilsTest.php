@@ -6,14 +6,14 @@ use Lmc\Cqrs\Types\Fixture\DecodedDummyData;
 use Lmc\Cqrs\Types\Fixture\DecodedSelf;
 use Lmc\Cqrs\Types\Fixture\DummyData;
 use Lmc\Cqrs\Types\ValueObject\DecodedValue;
+use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 
 class UtilsTest extends TestCase
 {
-    /**
-     * @test
-     * @dataProvider provideValues
-     */
+    #[Test]
+    #[DataProvider('provideValues')]
     public function shouldGetTypeOfGivenValue(mixed $value, string $expected): void
     {
         $type = Utils::getType($value);
@@ -21,7 +21,7 @@ class UtilsTest extends TestCase
         $this->assertSame($expected, $type);
     }
 
-    public function provideValues(): array
+    public static function provideValues(): array
     {
         return [
             // value, expectedType

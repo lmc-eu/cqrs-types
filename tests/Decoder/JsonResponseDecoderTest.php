@@ -2,15 +2,14 @@
 
 namespace Lmc\Cqrs\Types\Decoder;
 
+use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 
 class JsonResponseDecoderTest extends TestCase
 {
-    /**
-     * @dataProvider provideStringInput
-     *
-     * @test
-     */
+    #[Test]
+    #[DataProvider('provideStringInput')]
     public function shouldDecodeGivenString(?string $input, bool $supports, string|array|null $expected): void
     {
         $decoder = new JsonResponseDecoder();
@@ -19,7 +18,7 @@ class JsonResponseDecoderTest extends TestCase
         $this->assertSame($expected, $decoder->decode($input));
     }
 
-    public function provideStringInput(): array
+    public static function provideStringInput(): array
     {
         return [
             'null' => [null, false, null],

@@ -2,14 +2,14 @@
 
 namespace Lmc\Cqrs\Types\ValueObject;
 
+use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 
 class CacheTimeTest extends TestCase
 {
-    /**
-     * @test
-     * @dataProvider provideCacheTime
-     */
+    #[Test]
+    #[DataProvider('provideCacheTime')]
     public function shouldCreateCacheTime(callable $createCacheTime, int $expectedSeconds): void
     {
         $cacheTime = $createCacheTime();
@@ -17,7 +17,7 @@ class CacheTimeTest extends TestCase
         $this->assertSame($expectedSeconds, $cacheTime->getSeconds());
     }
 
-    public function provideCacheTime(): array
+    public static function provideCacheTime(): array
     {
         return [
             'no-cache' => [fn () => CacheTime::noCache(), 0],

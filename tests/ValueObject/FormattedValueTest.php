@@ -2,15 +2,14 @@
 
 namespace Lmc\Cqrs\Types\ValueObject;
 
+use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 
 class FormattedValueTest extends TestCase
 {
-    /**
-     * @dataProvider provideValues
-     *
-     * @test
-     */
+    #[Test]
+    #[DataProvider('provideValues')]
     public function shouldCastFormattedValueToString(mixed $original, mixed $formatted, string $expected): void
     {
         $formattedValue = new FormattedValue($original, $formatted);
@@ -18,7 +17,7 @@ class FormattedValueTest extends TestCase
         $this->assertSame($expected, (string) $formattedValue);
     }
 
-    public function provideValues(): array
+    public static function provideValues(): array
     {
         return [
             'formatted value is string' => ['original', 'formatted:value', 'formatted:value'],

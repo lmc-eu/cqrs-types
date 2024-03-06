@@ -8,6 +8,7 @@ use Lmc\Cqrs\Types\Fixture\DummyQuery;
 use Lmc\Cqrs\Types\Fixture\DummyQueryHandler;
 use Lmc\Cqrs\Types\ValueObject\OnErrorCallback;
 use Lmc\Cqrs\Types\ValueObject\OnSuccessCallback;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 
 class QueryTest extends TestCase
@@ -19,9 +20,7 @@ class QueryTest extends TestCase
         $this->dummyQueryHandler = new DummyQueryHandler();
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function shouldPrepareQueryByReturningItback(): void
     {
         $data = 'dummy-data';
@@ -30,7 +29,7 @@ class QueryTest extends TestCase
         $this->assertSame($query, $this->dummyQueryHandler->prepare($query));
     }
 
-    /** @test */
+    #[Test]
     public function shouldHandleDummyQueryDirectly(): void
     {
         $data = 'dummy-data';
@@ -45,7 +44,7 @@ class QueryTest extends TestCase
         );
     }
 
-    /** @test */
+    #[Test]
     public function shouldNotSupportOtherThanDummyQuery(): void
     {
         $notADummyQuery = new class() implements QueryInterface {

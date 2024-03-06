@@ -8,6 +8,7 @@ use Lmc\Cqrs\Types\Fixture\DummyCommand;
 use Lmc\Cqrs\Types\Fixture\DummySendCommandHandler;
 use Lmc\Cqrs\Types\ValueObject\OnErrorCallback;
 use Lmc\Cqrs\Types\ValueObject\OnSuccessCallback;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 
 class SendCommandTest extends TestCase
@@ -19,9 +20,7 @@ class SendCommandTest extends TestCase
         $this->dummySendCommandHandler = new DummySendCommandHandler();
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function shouldPrepareCommandByReturningItback(): void
     {
         $data = 'dummy-data';
@@ -30,7 +29,7 @@ class SendCommandTest extends TestCase
         $this->assertSame($command, $this->dummySendCommandHandler->prepare($command));
     }
 
-    /** @test */
+    #[Test]
     public function shouldSendDummyCommandDirectly(): void
     {
         $data = 'dummy-data';
@@ -45,7 +44,7 @@ class SendCommandTest extends TestCase
         );
     }
 
-    /** @test */
+    #[Test]
     public function shouldNotSupportOtherThanDummyCommand(): void
     {
         $notADummyCommand = new class() implements CommandInterface {
